@@ -10,13 +10,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class KellynPDFdownloader {
+public class PDFdownloader {
 	// ENDEREÇO DO SITE
 	public static String URL = "http://www.dominiopublico.gov.br/download/texto/";
 	// PASTS DE DESTINO
-	public static String pastaDeDestino = "C:\\PDF_1.1\\";
+	public static String pastaDeDestino = "C:\\Users\\";
 	// DADO DA LISTA
-	static String caminhoArquivo = "C:\\PDF\\";
+	static String caminhoArquivo = "lista/";
 	static String nomeArquivo = "lista.txt";
 	static String path = caminhoArquivo + nomeArquivo;
 	//
@@ -46,8 +46,6 @@ public class KellynPDFdownloader {
 			buffRead.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-
-			System.out.println("Arquivo não localizado no servidor");
 		} catch (IOException e) {
 			baixaArquivo(linha);
 		}
@@ -57,9 +55,9 @@ public class KellynPDFdownloader {
 		try {
 			saveUrl(pastaDeDestino + filename, URL + filename);
 		} catch (MalformedURLException e) {
-			System.out.println("MalformedURLException");
+			//
 		} catch (IOException e) {
-			System.out.println("IOException");
+			//
 		}
 
 	}
@@ -89,7 +87,7 @@ public class KellynPDFdownloader {
 			byte data[] = new byte[1024];
 			int count;
 			while ((count = in.read(data, 0, 1024)) != -1) {
-				System.out.println("Kellyn está baixando o arquivo" + filename + " ...");
+				System.out.println("baixando o arquivo" + filename + " ...");
 				fout.write(data, 0, count);
 			}
 		} finally {
